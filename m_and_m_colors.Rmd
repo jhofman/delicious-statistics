@@ -55,3 +55,44 @@ ggsave(file = 'm_and_m_colors.pdf', width = 6.5, height = 5.5)
 ```
 
 Our conclusion was that our initial hunch was right. There is a really uneven distribution of m&m colors with lots of greens and oranges but few blues, browns, and reds. So it seems like the factory might not be trying to distribute colors evenly. Now we're wondering why that is. Is it easier or cheaper to make green m&ms than blue ones?!
+
+We can get quantitative about this by comparing how far off our bag of m&ms is from what we'd expect to see if the factory were trying to make "random" bags. This could mean a process where there's a 6-sided die, with each color on one face. To fill a bag you roll the die, and then put in an m&m of that color. You repeat until the bag is filled. So we can pretend we have such a factory and generate random bags. Then we can see how far off the color distributions of these bags are from a completely even distribution (with 1/6 of each color). And we can compare how far off our bag is to this.
+
+```{r hypothesis-test}
+
+simulate_random_color_selection <- function(colors = plot_data$color,
+                                            n = sum(plot_data$count)) {
+    counts <- table(sample(colors, size = n, replace = T))
+    counts
+}
+
+compute_test_statistic <- function(counts) {
+  total_deviation_from_mean <- sum(abs(counts - mean(counts)))
+  total_deviation_from_mean
+}
+
+
+colors <- plot_data$color
+N <- sum(plot_data$count)
+
+sample_from_null_once <- function() {
+  counts <- simulate_random_color_selection(colors, N)
+  total_deviation_from_mean <- compute_test_statistic(counts)
+}
+
+null_distribution <- replicate(1e5, sample_from_null_once())
+mean(null_distribution)
+
+actual_test_statistic <- compute_test_statistic(plot_data$count)
+
+ggplot(data.frame(null_distribution), aes(x = null_distribution)) +
+  geom_histogram() +
+  geom_vline(xintercept = actual_test_statistic, linetype = "dashed", color = "red") +
+  labs(x = "How far off each bag is from an even distribution of colors",
+       y = "Number of times we'd expect to see such a bag",
+       title = "A look at how 'non-random' our bag of m&ms is",
+       subtitle = "Red line is our bag, grey bars show what we expect from 'random' colors")
+
+```
+
+Looks like this confirms our instincts that this bag is really far off from what you'd expect to see from chance if the factory actually worked that way! (Side note, it turns out that this *isn't* how things actually work at the m&m company. There are actually two factories, and they purposely make more green m&ms! See [here](https://qz.com/918008/the-color-distribution-of-mms-as-determined-by-a-phd-in-statistics/) for more!)
