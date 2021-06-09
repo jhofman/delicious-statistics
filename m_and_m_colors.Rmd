@@ -5,7 +5,7 @@ date: "June 9, 2021"
 output: html_document
 ---
 
-```{r}
+```{r setup, echo=F, show=F, message=F}
 library(tidyverse)
 
 theme_set(theme_bw())
@@ -26,39 +26,30 @@ Then we tallied up all of the numbers, entered them into our computer, and made 
 
 ```{r fancy-m-and-m-color-histogram}
 
-data <- c(Red = 19,
-          Orange = 66,
-          Yellow = 34,
-          Green = 81,
-          Blue = 15,
-          Brown = 22)
-
-plot_data <- data.frame(
-  color = names(data),
-  count = data
+plot_data <- tribble(
+  ~color, ~count, ~hex_code,
+  "Red", 19, "#b11224",
+  "Orange", 66,"#f26f22",
+  "Yellow", 34, "#fff200",
+  "Green", 81, "#31ac55",
+  "Blue", 15, "#2f9fd7",
+  "Brown", 22, "#603a34"
 )
 
 plot_data <- plot_data %>%
-  mutate(color = factor(color, levels = names(data)))
+  mutate(color = factor(color, levels = color))
 
-color_codes <- c(Red = "#b11224",
-                 Orange = "#f26f22",
-                 Yellow = "#fff200",
-                 Green = "#31ac55",
-                 Blue = "#2f9fd7",
-                 Brown = "#603a34")
-  
 ggplot(plot_data, aes(x = color, y = count, color = color, fill = color)) +
   geom_bar(stat = "identity", width = 0.5) +
   geom_text(aes(label = count), vjust = -1) +
-  scale_color_manual(values = color_codes) +
-  scale_fill_manual(values = color_codes) +
+  scale_color_manual(values = plot_data$hex_code) +
+  scale_fill_manual(values = plot_data$hex_code) +
   scale_y_continuous(breaks = seq(0, 80, 5)) +
   labs(x = "M & M color",
        y = "Number of M & Ms in the package") +
   theme_minimal() +
   theme(legend.position = "none",
-        axis.text.x = element_text(color = color_codes))
+        axis.text.x = element_text(color = plot_data$hex_code))
 ggsave(file = 'm_and_m_colors.pdf', width = 6.5, height = 5.5)
 
 ```

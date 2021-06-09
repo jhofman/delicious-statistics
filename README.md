@@ -1,24 +1,3 @@
-``` r
-library(tidyverse)
-```
-
-    ## ── Attaching packages ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
-
-    ## ✔ ggplot2 3.3.2     ✔ purrr   0.3.4
-    ## ✔ tibble  3.0.4     ✔ dplyr   1.0.2
-    ## ✔ tidyr   1.1.2     ✔ stringr 1.4.0
-    ## ✔ readr   1.4.0     ✔ forcats 0.5.0
-
-    ## ── Conflicts ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-    ## ✖ dplyr::filter() masks stats::filter()
-    ## ✖ dplyr::lag()    masks stats::lag()
-
-``` r
-theme_set(theme_bw())
-
-set.seed(42)
-```
-
 We opened a bag of m\&m candies today and saw what looked like a
 surprisingly large number of green m\&ms\!
 
@@ -36,39 +15,30 @@ and made a fancy bar plot. The toughest (and most important) part was
 getting the official m\&m color codes so things looked pretty.
 
 ``` r
-data <- c(Red = 19,
-          Orange = 66,
-          Yellow = 34,
-          Green = 81,
-          Blue = 15,
-          Brown = 22)
-
-plot_data <- data.frame(
-  color = names(data),
-  count = data
+plot_data <- tribble(
+  ~color, ~count, ~hex_code,
+  "Red", 19, "#b11224",
+  "Orange", 66,"#f26f22",
+  "Yellow", 34, "#fff200",
+  "Green", 81, "#31ac55",
+  "Blue", 15, "#2f9fd7",
+  "Brown", 22, "#603a34"
 )
 
 plot_data <- plot_data %>%
-  mutate(color = factor(color, levels = names(data)))
+  mutate(color = factor(color, levels = color))
 
-color_codes <- c(Red = "#b11224",
-                 Orange = "#f26f22",
-                 Yellow = "#fff200",
-                 Green = "#31ac55",
-                 Blue = "#2f9fd7",
-                 Brown = "#603a34")
-  
 ggplot(plot_data, aes(x = color, y = count, color = color, fill = color)) +
   geom_bar(stat = "identity", width = 0.5) +
   geom_text(aes(label = count), vjust = -1) +
-  scale_color_manual(values = color_codes) +
-  scale_fill_manual(values = color_codes) +
+  scale_color_manual(values = plot_data$hex_code) +
+  scale_fill_manual(values = plot_data$hex_code) +
   scale_y_continuous(breaks = seq(0, 80, 5)) +
   labs(x = "M & M color",
        y = "Number of M & Ms in the package") +
   theme_minimal() +
   theme(legend.position = "none",
-        axis.text.x = element_text(color = color_codes))
+        axis.text.x = element_text(color = plot_data$hex_code))
 ```
 
     ## Warning: Vectorized input to `element_text()` is not officially supported.
