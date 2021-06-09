@@ -13,17 +13,18 @@ theme_set(theme_bw())
 set.seed(42)
 ```
 
-We opened a bag of M&Ms today and saw what looked like a surprisingly large number of green m&ms!
+We opened a bag of m&m candies today and saw what looked like a surprisingly large number of green m&ms!
 
 ![bag of m&ms](bag_of_m_and_ms.jpg)
 
-So we decided to count them. We made one "bar" for each color, where each bar was 3 m&ms wide. It was tough to resist eatting them in the process.
+So we decided to count them. We made one "bar" for each color, where each bar was 3 m&ms wide. It was tough to resist eating them in the process.
 
 ![histogram of m&m colors](m_and_m_colors.jpg)
+![counts of m&m colors](data.jpg)
 
 Then we tallied up all of the numbers, entered them into our computer, and made a fancy bar plot. The toughest (and most important) part was getting the official m&m color codes so things looked pretty. 
 
-```{r fancy-m-and-m-colorr-histogram}
+```{r fancy-m-and-m-color-histogram}
 
 data <- c(Red = 19,
           Orange = 66,

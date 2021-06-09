@@ -1,21 +1,35 @@
 ``` r
 library(tidyverse)
+```
 
+    ## ── Attaching packages ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
+
+    ## ✔ ggplot2 3.3.2     ✔ purrr   0.3.4
+    ## ✔ tibble  3.0.4     ✔ dplyr   1.0.2
+    ## ✔ tidyr   1.1.2     ✔ stringr 1.4.0
+    ## ✔ readr   1.4.0     ✔ forcats 0.5.0
+
+    ## ── Conflicts ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ✖ dplyr::filter() masks stats::filter()
+    ## ✖ dplyr::lag()    masks stats::lag()
+
+``` r
 theme_set(theme_bw())
 
 set.seed(42)
 ```
 
-We opened a bag of M\&Ms today and saw what looked like a surprisingly
-large number of green m\&ms\!
+We opened a bag of m\&m candies today and saw what looked like a
+surprisingly large number of green m\&ms\!
 
 ![bag of m\&ms](bag_of_m_and_ms.jpg)
 
 So we decided to count them. We made one “bar” for each color, where
-each bar was 3 m\&ms wide. It was tough to resist eatting them in the
+each bar was 3 m\&ms wide. It was tough to resist eating them in the
 process.
 
-![histogram of m\&m colors](m_and_m_colors.jpg)
+![histogram of m\&m colors](m_and_m_colors.jpg) ![counts of m\&m
+colors](data.jpg)
 
 Then we tallied up all of the numbers, entered them into our computer,
 and made a fancy bar plot. The toughest (and most important) part was
@@ -60,7 +74,7 @@ ggplot(plot_data, aes(x = color, y = count, color = color, fill = color)) +
     ## Warning: Vectorized input to `element_text()` is not officially supported.
     ## Results may be unexpected or may change in future versions of ggplot2.
 
-![](m_and_m_colors_files/figure-gfm/fancy-m-and-m-colorr-histogram-1.png)<!-- -->
+![](README_files/figure-gfm/fancy-m-and-m-color-histogram-1.png)<!-- -->
 
 ``` r
 ggsave(file = 'm_and_m_colors.pdf', width = 6.5, height = 5.5)
