@@ -108,10 +108,10 @@ actual_test_statistic <- compute_test_statistic(plot_data$count)
 ggplot(data.frame(null_distribution), aes(x = null_distribution)) +
   geom_histogram() +
   geom_vline(xintercept = actual_test_statistic, linetype = "dashed", color = "red") +
-  labs(x = "How far off each bag is from an even distribution of colors",
+  labs(x = 'How far off each "random" bag is from a perfectly even distribution of colors',
        y = "Number of times we'd expect to see such a bag",
-       title = "A look at how 'non-random' our bag of m&ms is",
-       subtitle = "Red line is our bag, grey bars show what we expect from 'random' colors")
+       title = 'A look at how unlikely our bag of m&ms is if factories were "random"',
+       subtitle = 'Red line is our bag, grey bars show what we expect from random distributed colors')
 
 ```
 
