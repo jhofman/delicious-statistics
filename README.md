@@ -1,14 +1,22 @@
+# Delicious statistics
+
+(A.k.a how to trick your kids into learning statistics using m\&ms.)
+
 We opened a bag of m\&m candies today and saw what looked like a
 surprisingly large number of green m\&ms\!
 
 ![bag of m\&ms](bag_of_m_and_ms.jpg)
 
+# Counting colors
+
 So we decided to count them. We made one “bar” for each color, where
 each bar was 3 m\&ms wide. It was tough to resist eating them in the
 process.
 
+# The simple way
+
 ![histogram of m\&m colors](m_and_m_colors.jpg) ![counts of m\&m
-colors](data.jpg)
+colors](data.jpg) \#\# The fancy way
 
 Then we tallied up all of the numbers, entered them into our computer,
 and made a fancy bar plot. The toughest (and most important) part was
@@ -55,6 +63,8 @@ uneven distribution of m\&m colors with lots of greens and oranges but
 few blues, browns, and reds. So it seems like the factory might not be
 trying to distribute colors evenly. Now we’re wondering why that is. Is
 it easier or cheaper to make green m\&ms than blue ones?\!
+
+# Testing our guess
 
 We can get quantitative about this by comparing how far off our bag of
 m\&ms is from what we’d expect to see if the factory were trying to make

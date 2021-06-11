@@ -13,14 +13,22 @@ theme_set(theme_bw())
 set.seed(42)
 ```
 
+# Delicious statistics
+(A.k.a how to trick your kids into learning statistics using m&ms.)
+
 We opened a bag of m&m candies today and saw what looked like a surprisingly large number of green m&ms!
 
 ![bag of m&ms](bag_of_m_and_ms.jpg)
 
+# Counting colors
+
 So we decided to count them. We made one "bar" for each color, where each bar was 3 m&ms wide. It was tough to resist eating them in the process.
+
+# The simple way
 
 ![histogram of m&m colors](m_and_m_colors.jpg)
 ![counts of m&m colors](data.jpg)
+## The fancy way
 
 Then we tallied up all of the numbers, entered them into our computer, and made a fancy bar plot. The toughest (and most important) part was getting the official m&m color codes so things looked pretty. 
 
@@ -55,6 +63,8 @@ ggsave(file = 'm_and_m_colors.pdf', width = 6.5, height = 5.5)
 ```
 
 Our conclusion was that our initial hunch was right. There is a really uneven distribution of m&m colors with lots of greens and oranges but few blues, browns, and reds. So it seems like the factory might not be trying to distribute colors evenly. Now we're wondering why that is. Is it easier or cheaper to make green m&ms than blue ones?!
+
+# Testing our guess
 
 We can get quantitative about this by comparing how far off our bag of m&ms is from what we'd expect to see if the factory were trying to make "random" bags. This could mean a process where there's a 6-sided die, with each color on one face. To fill a bag you roll the die, and then put in an m&m of that color. You repeat until the bag is filled. So we can pretend we have such a factory and generate random bags. Then we can see how far off the color distributions of these bags are from a completely even distribution (with 1/6 of each color). And we can compare how far off our bag is to this.
 
